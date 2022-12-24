@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32328.378
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MazeGenerator.Core", "MazeGenerator.Core\MazeGenerator.Core.csproj", "{3430EA70-0717-4456-A425-57095486CFCD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MazeGenerator.WinForms", "MazeGenerator.WinForms\MazeGenerator.WinForms.csproj", "{EC27AC7D-D448-421D-8DDF-79D9EA562D82}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ソリューション項目", "ソリューション項目", "{837FD86E-DEAF-446F-A8DD-9E5988E35E8B}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Image", "Image", "{235A11AE-00AD-434B-BED9-F66B348A6B18}"
+	ProjectSection(SolutionItems) = preProject
+		Image\01.png = Image\01.png
+		Image\02.png = Image\02.png
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3430EA70-0717-4456-A425-57095486CFCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3430EA70-0717-4456-A425-57095486CFCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3430EA70-0717-4456-A425-57095486CFCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3430EA70-0717-4456-A425-57095486CFCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC27AC7D-D448-421D-8DDF-79D9EA562D82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC27AC7D-D448-421D-8DDF-79D9EA562D82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC27AC7D-D448-421D-8DDF-79D9EA562D82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC27AC7D-D448-421D-8DDF-79D9EA562D82}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{235A11AE-00AD-434B-BED9-F66B348A6B18} = {837FD86E-DEAF-446F-A8DD-9E5988E35E8B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A0201488-89C9-42B5-8F78-126217DF49D5}
+	EndGlobalSection
+EndGlobal
