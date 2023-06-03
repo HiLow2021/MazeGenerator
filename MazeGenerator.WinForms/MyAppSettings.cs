@@ -20,7 +20,7 @@ namespace MazeGenerator.WinForms
         public int Width { get; set; }
         public int Height { get; set; }
         public bool IsTopMost { get; set; } = false;
-        public bool IsFixedWindowsPosition { get; set; } = false;
+        public bool IsFixedWindowPosition { get; set; } = false;
         public bool IsFixedWindowSize { get; set; } = false;
 
         public bool IsDisplayAnswerRoute { get; set; } = false;

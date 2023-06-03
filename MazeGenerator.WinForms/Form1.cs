@@ -12,7 +12,7 @@ namespace MazeGenerator.WinForms
     public partial class Form1 : Form
     {
         private const int RATE = 100;
-        private MyAppSettings _appSettings = new MyAppSettings();
+        private MyAppSettings _settings = new MyAppSettings();
         private Generator? _generator;
         private Layer? _layer;
 
@@ -31,7 +31,7 @@ namespace MazeGenerator.WinForms
             };
             Shown += (sender, e) =>
             {
-                TopMost = _appSettings.IsTopMost;
+                TopMost = _settings.IsTopMost;
             };
             FormClosed += (sender, e) => SaveConfigFile();
             SizeChanged += (sender, e) => RefreshMaze();
@@ -111,19 +111,19 @@ namespace MazeGenerator.WinForms
             };
             settingsToolStripMenuItem.Click += (sender, e) =>
             {
-                _appSettings.MazeWidth = (int)numericUpDown1.Value;
-                _appSettings.MazeHeight = (int)numericUpDown2.Value;
+                _settings.MazeWidth = (int)numericUpDown1.Value;
+                _settings.MazeHeight = (int)numericUpDown2.Value;
 
-                using var form2 = new Form2(_appSettings, Width, Height, pictureBox1.Width, pictureBox1.Height);
+                using var form2 = new Form2(_settings, Width, Height, pictureBox1.Width, pictureBox1.Height);
                 form2.TopMost = TopMost;
 
                 if (form2.ShowDialog(this) == DialogResult.OK)
                 {
-                    Width = _appSettings.Width;
-                    Height = _appSettings.Height;
-                    TopMost = _appSettings.IsTopMost;
-                    numericUpDown1.Value = _appSettings.MazeWidth;
-                    numericUpDown2.Value = _appSettings.MazeHeight;
+                    Width = _settings.Width;
+                    Height = _settings.Height;
+                    TopMost = _settings.IsTopMost;
+                    numericUpDown1.Value = _settings.MazeWidth;
+                    numericUpDown2.Value = _settings.MazeHeight;
                 }
             };
 
@@ -228,7 +228,7 @@ namespace MazeGenerator.WinForms
         private Generator CreateMazeGenerator()
         {
             var index = comboBox1.SelectedIndex;
-            var isAnswerUsed = _appSettings.IsDisplayAnswerRoute;
+            var isAnswerUsed = _settings.IsDisplayAnswerRoute;
 
             _layer = new Layer((int)numericUpDown1.Value, (int)numericUpDown2.Value);
             _generator = index switch
@@ -306,23 +306,23 @@ namespace MazeGenerator.WinForms
             {
                 var bs = FileAdvanced.LoadFromBinaryFile<byte[]>(MyAppSettings.ConfigPath);
 
-                _appSettings = Cryptography.Decrypt<MyAppSettings>(bs);
+                _settings = Cryptography.Decrypt<MyAppSettings>(bs);
 
-                if (_appSettings.IsFixedWindowsPosition)
+                if (_settings.IsFixedWindowPosition)
                 {
-                    Left = _appSettings.Left;
-                    Top = _appSettings.Top;
+                    Left = _settings.Left;
+                    Top = _settings.Top;
                 }
-                if (_appSettings.IsFixedWindowSize)
+                if (_settings.IsFixedWindowSize)
                 {
-                    Width = _appSettings.Width;
-                    Height = _appSettings.Height;
+                    Width = _settings.Width;
+                    Height = _settings.Height;
                 }
 
-                comboBox1.SelectedIndex = _appSettings.MazeAlgorithmMethodType;
-                numericUpDown1.Value = _appSettings.MazeWidth;
-                numericUpDown2.Value = _appSettings.MazeHeight;
-                trackBar1.Value = _appSettings.MazeGenerationMilliseconds;
+                comboBox1.SelectedIndex = _settings.MazeAlgorithmMethodType;
+                numericUpDown1.Value = _settings.MazeWidth;
+                numericUpDown2.Value = _settings.MazeHeight;
+                trackBar1.Value = _settings.MazeGenerationMilliseconds;
             }
         }
 
@@ -330,19 +330,19 @@ namespace MazeGenerator.WinForms
         {
             if (WindowState == FormWindowState.Normal)
             {
-                _appSettings.Left = Left;
-                _appSettings.Top = Top;
+                _settings.Left = Left;
+                _settings.Top = Top;
             }
 
-            _appSettings.Width = Width;
-            _appSettings.Height = Height;
+            _settings.Width = Width;
+            _settings.Height = Height;
 
-            _appSettings.MazeAlgorithmMethodType = comboBox1.SelectedIndex;
-            _appSettings.MazeWidth = (int)numericUpDown1.Value;
-            _appSettings.MazeHeight = (int)numericUpDown2.Value;
-            _appSettings.MazeGenerationMilliseconds = trackBar1.Value;
+            _settings.MazeAlgorithmMethodType = comboBox1.SelectedIndex;
+            _settings.MazeWidth = (int)numericUpDown1.Value;
+            _settings.MazeHeight = (int)numericUpDown2.Value;
+            _settings.MazeGenerationMilliseconds = trackBar1.Value;
 
-            FileAdvanced.SaveToBinaryFile(MyAppSettings.ConfigPath, Cryptography.Encrypt(_appSettings));
+            FileAdvanced.SaveToBinaryFile(MyAppSettings.ConfigPath, Cryptography.Encrypt(_settings));
         }
     }
 }
