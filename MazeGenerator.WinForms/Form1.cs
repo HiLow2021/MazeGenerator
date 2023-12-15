@@ -12,7 +12,7 @@ namespace MazeGenerator.WinForms
     public partial class Form1 : Form
     {
         private const int RATE = 100;
-        private MyAppSettings _settings = new MyAppSettings();
+        private MyAppSettings _settings = new();
         private Generator? _generator;
         private Layer? _layer;
 
@@ -29,10 +29,7 @@ namespace MazeGenerator.WinForms
                 _generator = CreateMazeGenerator();
                 DisplaySizeMessage();
             };
-            Shown += (sender, e) =>
-            {
-                TopMost = _settings.IsTopMost;
-            };
+            Shown += (sender, e) => TopMost = _settings.IsTopMost;
             FormClosed += (sender, e) => SaveConfigFile();
             SizeChanged += (sender, e) => RefreshMaze();
             exitToolStripMenuItem.Click += (sender, e) => Application.Exit();

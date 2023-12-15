@@ -12,23 +12,19 @@ namespace MazeGenerator.WinForms
 {
     public partial class Form2 : Form
     {
-        private MyAppSettings? _settings;
-
         public Form2(MyAppSettings settings, int formWidth, int formHeight, int pictureBoxWidth, int pictureBoxHeight)
         {
             InitializeComponent();
 
             Load += (sender, e) =>
             {
-                _settings = settings;
+                checkBox1.Checked = settings.IsTopMost;
+                checkBox2.Checked = settings.IsFixedWindowPosition;
+                checkBox3.Checked = settings.IsFixedWindowSize;
+                checkBox4.Checked = settings.IsDisplayAnswerRoute;
 
-                checkBox1.Checked = _settings.IsTopMost;
-                checkBox2.Checked = _settings.IsFixedWindowPosition;
-                checkBox3.Checked = _settings.IsFixedWindowSize;
-                checkBox4.Checked = _settings.IsDisplayAnswerRoute;
-
-                numericUpDown1.Value = _settings.MazeWidth;
-                numericUpDown2.Value = _settings.MazeHeight;
+                numericUpDown1.Value = settings.MazeWidth;
+                numericUpDown2.Value = settings.MazeHeight;
                 numericUpDown3.Value = pictureBoxWidth;
                 numericUpDown4.Value = pictureBoxHeight;
                 CalculateCellSize();
@@ -43,20 +39,20 @@ namespace MazeGenerator.WinForms
 
             button1.Click += (sender, e) =>
             {
-                if (_settings == null)
+                if (settings == null)
                 {
                     return;
                 }
 
-                _settings.IsTopMost = checkBox1.Checked;
-                _settings.IsFixedWindowPosition = checkBox2.Checked;
-                _settings.IsFixedWindowSize = checkBox3.Checked;
-                _settings.IsDisplayAnswerRoute = checkBox4.Checked;
+                settings.IsTopMost = checkBox1.Checked;
+                settings.IsFixedWindowPosition = checkBox2.Checked;
+                settings.IsFixedWindowSize = checkBox3.Checked;
+                settings.IsDisplayAnswerRoute = checkBox4.Checked;
 
-                _settings.MazeWidth = (int)numericUpDown1.Value;
-                _settings.MazeHeight = (int)numericUpDown2.Value;
-                _settings.Width = (int)numericUpDown3.Value + (formWidth - pictureBoxWidth);
-                _settings.Height = (int)numericUpDown4.Value + (formHeight - pictureBoxHeight);
+                settings.MazeWidth = (int)numericUpDown1.Value;
+                settings.MazeHeight = (int)numericUpDown2.Value;
+                settings.Width = (int)numericUpDown3.Value + (formWidth - pictureBoxWidth);
+                settings.Height = (int)numericUpDown4.Value + (formHeight - pictureBoxHeight);
             };
             button3.Click += (sender, e) =>
             {
